@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SEO_skp Documentation — SEO · AEO · GEO Readiness Audit</title>
+  <style>
+    :root {
+      --ink: #0f1c2e;
+      --sea: #1a4a6e;
+      --mist: #e8eef4;
+      --sand: #f7f3ec;
+      --coral: #c45c26;
+      --moss: #2f6b4f;
+      --line: rgba(15, 28, 46, 0.12);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse 70% 40% at 0% 0%, rgba(26,74,110,.1), transparent),
+        var(--sand);
+      line-height: 1.55;
+    }
+    a { color: var(--sea); }
+    .layout { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+    nav {
+      position: sticky; top: 0; align-self: start;
+      height: 100vh; overflow: auto;
+      background: var(--ink); color: #f3f6fa;
+      padding: 1.5rem 1rem 2rem;
+    }
+    nav .brand { font-size: 1.35rem; font-weight: 700; margin-bottom: .25rem; }
+    nav .brand span { color: #e8a87c; }
+    nav p { font-size: .8rem; opacity: .7; margin: 0 0 1.25rem; }
+    nav a {
+      display: block; color: #c9d6e5; text-decoration: none;
+      padding: .4rem .55rem; border-radius: 6px; font-size: .9rem;
+    }
+    nav a:hover { background: rgba(255,255,255,.08); color: #fff; }
+    main { padding: 2.5rem 2.5rem 4rem; max-width: 920px; }
+    h1 { font-size: 2rem; margin: 0 0 .5rem; letter-spacing: -0.02em; }
+    h2 {
+      font-size: 1.35rem; margin: 2.5rem 0 .75rem;
+      padding-bottom: .4rem; border-bottom: 1px solid var(--line);
+    }
+    h3 { font-size: 1.05rem; margin: 1.4rem 0 .4rem; color: var(--sea); }
+    .lead { font-size: 1.1rem; color: #334; max-width: 42rem; }
+    .card {
+      background: #fff; border: 1px solid var(--line);
+      border-radius: 10px; padding: 1rem 1.15rem; margin: 1rem 0;
+    }
+    .grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+    .pill {
+      display: inline-block; font-size: .75rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .04em;
+      background: var(--mist); color: var(--sea);
+      padding: .2rem .5rem; border-radius: 999px;
+    }
+    .warn {
+      border-left: 4px solid var(--coral);
+      background: #fff7f2; padding: .85rem 1rem; margin: 1rem 0;
+    }
+    .ok {
+      border-left: 4px solid var(--moss);
+      background: #f1f8f4; padding: .85rem 1rem; margin: 1rem 0;
+    }
+    table {
+      width: 100%; border-collapse: collapse; font-size: .92rem;
+      background: #fff; border: 1px solid var(--line);
+    }
+    th, td { text-align: left; padding: .65rem .75rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { background: var(--mist); }
+    code, pre {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: .85rem;
+    }
+    code { background: var(--mist); padding: .1rem .35rem; border-radius: 4px; }
+    pre {
+      background: #122033; color: #e8eef4; padding: 1rem 1.1rem;
+      border-radius: 8px; overflow: auto;
+    }
+    .flow {
+      display: flex; flex-wrap: wrap; gap: .5rem; align-items: center;
+      margin: 1rem 0;
+    }
+    .flow .step {
+      background: #fff; border: 1px solid var(--line);
+      padding: .5rem .75rem; border-radius: 8px; font-size: .85rem; font-weight: 600;
+    }
+    .flow .arrow { opacity: .45; }
+    footer {
+      margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--line);
+      font-size: .85rem; color: #556;
+    }
+    @media (max-width: 860px) {
+      .layout { grid-template-columns: 1fr; }
+      nav { height: auto; position: relative; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <nav>
+      <div class="brand">SEO_<span>skp</span></div>
+      <p>Product &amp; developer docs</p>
+      <a href="#overview">Overview</a>
+      <a href="#problem">Problem</a>
+      <a href="#solution">Solution</a>
+      <a href="#pillars">Three pillars</a>
+      <a href="#how">How it works</a>
+      <a href="#scoring">Scoring</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#api">API reference</a>
+      <a href="#setup">Local setup</a>
+      <a href="#evaluation">Evaluation</a>
+      <a href="#scope">Scope &amp; limits</a>
+      <a href="#disclaimer">Disclaimer</a>
+    </nav>
+
+    <main>
+      <p class="pill">Documentation · English</p>
+      <h1 id="overview">Website readiness audit platform</h1>
+      <p class="lead">
+        SEO_skp crawls a website and reports separate <strong>SEO</strong>, <strong>AEO</strong>, and <strong>GEO</strong>
+        readiness scores with explainable issues and practical recommendations.
+      </p>
+
+      <div class="ok">
+        <strong>Doctor metaphor:</strong> the system performs the check-up and writes the prescription.
+        Applying fixes remains the website owner’s responsibility.
+      </div>
+
+      <h2 id="problem">1. Problem</h2>
+      <p>
+        Small business owners often cannot tell what is wrong with their site.
+        Tools such as Screaming Frog or Ahrefs can be expensive or technical, and many focus only on traditional SEO.
+        In our testing, three apps gave scores of <strong>97</strong>, <strong>92</strong>, and <strong>48</strong> for the same site —
+        with little explanation of how each score was built.
+      </p>
+
+      <h2 id="solution">2. Solution</h2>
+      <div class="grid">
+        <div class="card"><strong>Three scores + overall</strong><br />SEO, AEO, GEO — each explainable</div>
+        <div class="card"><strong>Plain-language issues</strong><br />Critical / Warning / Info</div>
+        <div class="card"><strong>Recommendations</strong><br />LLM or rule-based fallback</div>
+        <div class="card"><strong>History &amp; compare</strong><br />Before/after + PDF export</div>
+      </div>
+
+      <h2 id="pillars">3. The three pillars</h2>
+      <h3>SEO — can search engines find and rank the site?</h3>
+      <p>Titles, meta descriptions (missing vs empty), headings, images/ALT, links, HTTPS, robots, sitemap, schema, load time.</p>
+
+      <h3>AEO — does the site answer questions clearly?</h3>
+      <p>
+        Beyond “has an FAQ?”, the <strong>AEO Answerability Analyzer</strong> generates visitor questions from page text only,
+        then marks each answer as <em>Clear</em>, <em>Partial</em>, or <em>No answer</em>.
+        Missing answers get rewrite suggestions with placeholders such as <code>[your confirmed lead time]</code> — never invented facts.
+      </p>
+
+      <h3>GEO — can AI tools understand and cite the site?</h3>
+      <p>
+        Checks AI bot access, Organization/LocalBusiness schema, trust signals, specificity, brand consistency,
+        and builds an <strong>Entity Graph</strong>: what an AI would learn from the site alone — and what it would miss.
+      </p>
+
+      <div class="warn">
+        AEO, GEO, and LLMO are industry labels, not official Google ranking systems.
+        We call our checks <strong>best-practice signals</strong>, not ranking factors.
+      </div>
+
+      <h2 id="how">4. How the system works</h2>
+      <div class="flow">
+        <div class="step">1. Enter URL</div><span class="arrow">→</span>
+        <div class="step">2. Crawl</div><span class="arrow">→</span>
+        <div class="step">3. Extract</div><span class="arrow">→</span>
+        <div class="step">4. Rules + NLP</div><span class="arrow">→</span>
+        <div class="step">5. LLM text</div><span class="arrow">→</span>
+        <div class="step">6. Scores &amp; report</div>
+      </div>
+      <ol>
+        <li>Validate URL format, reachability, and HTTPS preference.</li>
+        <li>Crawl from the homepage (robots.txt, sitemap.xml, internal links, page cap ~25).</li>
+        <li>Extract title, meta, headings, images, links, canonical, viewport, robots meta, JSON-LD, body text.</li>
+        <li>Run SEO / AEO / GEO rule checks; failed checks become issues with severity.</li>
+        <li>NLP: readability, keywords, duplicates, title–content match, intent signals.</li>
+        <li>Optional local LLM: questions, recommendations, FAQ/schema drafts (JSON, grounded in page text).</li>
+        <li>Store scores; show progress, issues, PDF, history, before/after.</li>
+      </ol>
+
+      <h3>Roles of rules, NLP, and LLM</h3>
+      <table>
+        <thead><tr><th>Layer</th><th>Responsibility</th></tr></thead>
+        <tbody>
+          <tr><td>Rules</td><td>Fixed checks, issue detection, scoring</td></tr>
+          <tr><td>NLP</td><td>Text analysis (readability, keywords, duplicates, entities)</td></tr>
+          <tr><td>LLM</td><td>Text generation only — never the numeric score</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="scoring">5. Scoring</h2>
+      <table>
+        <thead><tr><th>Component</th><th>Weight</th></tr></thead>
+        <tbody>
+          <tr><td>SEO overall</td><td>70%</td></tr>
+          <tr><td>— On-page</td><td>20</td></tr>
+          <tr><td>— Content</td><td>15</td></tr>
+          <tr><td>— Technical</td><td>15</td></tr>
+          <tr><td>— Performance</td><td>10</td></tr>
+          <tr><td>— Images &amp; Links</td><td>10</td></tr>
+          <tr><td>AEO</td><td>15%</td></tr>
+          <tr><td>GEO</td><td>15%</td></tr>
+        </tbody>
+      </table>
+      <p>Severity points: Critical <strong>3</strong>, Warning <strong>2</strong>, Info <strong>1</strong>.</p>
+      <p>Grades: 0–49 Poor · 50–74 Needs Work · 75–89 Good · 90+ Excellent.</p>
+
+      <h2 id="architecture">6. Architecture</h2>
+      <pre>React (Vite + Tailwind)
+        │  POST /api/audits + poll
+        ▼
+FastAPI  ── background audit task
+        ├── requests + BeautifulSoup (crawler)
+        ├── SEO / AEO / GEO rule engines
+        ├── NLP (textstat, rapidfuzz, …)
+        ├── NetworkX entity graph
+        ├── Ollama (optional LLM)
+        └── ReportLab PDF
+        ▼
+SQLite or PostgreSQL</pre>
+
+      <h2 id="api">7. API reference</h2>
+      <p>All audit routes require header <code>X-Session-Id</code> (anonymous UUID from the browser).</p>
+      <table>
+        <thead><tr><th>Method</th><th>Path</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>POST</td><td><code>/api/audits</code></td><td>Start audit — body <code>{"url":"..."}</code></td></tr>
+          <tr><td>GET</td><td><code>/api/audits/{id}</code></td><td>Status and progress</td></tr>
+          <tr><td>GET</td><td><code>/api/audits/{id}/report</code></td><td>Full report</td></tr>
+          <tr><td>GET</td><td><code>/api/audits</code></td><td>History for this session</td></tr>
+          <tr><td>GET</td><td><code>/api/audits/{id}/compare/{other}</code></td><td>Before/after (same URL)</td></tr>
+          <tr><td>GET</td><td><code>/api/audits/{id}/pdf</code></td><td>PDF download</td></tr>
+          <tr><td>GET</td><td><code>/api/health</code></td><td>Health check</td></tr>
+        </tbody>
+      </table>
+      <p>Interactive OpenAPI UI: <code>http://127.0.0.1:8000/docs</code></p>
+
+      <h2 id="setup">8. Local setup</h2>
+      <h3>Backend</h3>
+      <pre>cd backend
+python -m venv .venv
+.\.venv\Scripts\activate          # Windows
+pip install -r requirements.txt
+copy ..\.env.example ..\.env
+uvicorn app.main:app --reload --port 8000</pre>
+      <h3>Frontend</h3>
+      <pre>cd frontend
+npm install
+npm run dev</pre>
+      <p>App: <code>http://127.0.0.1:5173</code> · API: <code>http://127.0.0.1:8000</code></p>
+      <h3>Tests</h3>
+      <pre>cd backend
+pytest -q</pre>
+
+      <h2 id="evaluation">9. Evaluation</h2>
+      <p>
+        We measure whether reported <strong>issues</strong> are correct (true/false positives and misses),
+        not whether our overall number matches another vendor’s score.
+        See <code>EVALUATION.md</code> in the repository root.
+      </p>
+      <p>
+        Fixture site <strong>books.toscrape.com</strong> should surface empty meta description,
+        missing canonical, no schema, missing robots.txt, and missing sitemap.xml.
+      </p>
+
+      <h2 id="scope">10. Scope (V1)</h2>
+      <div class="grid">
+        <div class="card"><strong>Must have</strong><br />Crawler, SEO rules, SEO score, report</div>
+        <div class="card"><strong>Should have</strong><br />AEO, GEO, LLM tips, PDF</div>
+        <div class="card"><strong>Nice to have</strong><br />Entity graph, history compare</div>
+        <div class="card"><strong>Not in V1</strong><br />Neo4j, Playwright, bulk URLs, competitor compare</div>
+      </div>
+
+      <h2 id="disclaimer">11. Disclaimer</h2>
+      <div class="warn">
+        These scores are a readiness assessment only. They are not official Google rankings or AI citation scores.
+        The system audits and recommends; it does not modify websites or guarantee outcomes.
+      </div>
+
+      <footer>
+        SEO_skp — SEO / AEO / GEO website readiness auditor.
+        Documentation is written in English for contributors and evaluators.
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
